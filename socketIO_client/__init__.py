@@ -218,6 +218,7 @@ class _ListenerThread(Thread):
                 code, packetID, path, data = self._socketIO.recv_packet()
             except SocketIOConnectionError, error:
                 print error
+                self._socketIO.disconnect()
                 self.cancel()
                 break
             except SocketIOPacketError, error:
